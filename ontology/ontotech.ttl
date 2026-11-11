@@ -1,0 +1,115 @@
+@prefix : <https://qazcorpus.kz/ontotech#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix datacite: <http://purl.org/spar/datacite/> .
+
+<https://qazcorpus.kz/ontotech> rdf:type owl:Ontology ;
+    dcterms:title "OntoTech: Domain Ontology for Digital Technology Passports and Scientific Knowledge Graphs"@en ;
+    dcterms:creator "Bulbul D. Karbozova", "Emir Y. Toksanov" ;
+    dcterms:publisher "Satbayev University" ;
+    owl:versionInfo "1.0.0" .
+
+# =============================================================================
+# Core Concept Classes (C)
+# =============================================================================
+
+:TechnologyPassport rdf:type owl:Class ;
+    rdfs:label "Digital Technology Passport"@en .
+
+:RnDReport rdf:type owl:Class ;
+    rdfs:label "Research and Development Report"@en .
+
+:PatentDocument rdf:type owl:Class ;
+    rdfs:label "Patent or IP Protection Document"@en .
+
+:SoftwareModule rdf:type owl:Class ;
+    rdfs:label "Scientific Software or AI Model"@en .
+
+:TestProtocol rdf:type owl:Class ;
+    rdfs:label "Laboratory or Industrial Test Protocol"@en .
+
+:Researcher rdf:type owl:Class ;
+    rdfs:label "Researcher / Inventor"@en .
+
+:Organization rdf:type owl:Class ;
+    rdfs:label "University / Research Institute / Industrial Partner"@en .
+
+:Equipment rdf:type owl:Class ;
+    rdfs:label "Laboratory or Industrial Equipment"@en .
+
+:IndustryDomain rdf:type owl:Class ;
+    rdfs:label "Application Industry Sector (OECD / IPC)"@en .
+
+:TRLLevel rdf:type owl:Class ;
+    rdfs:label "ISO 16290 Technology Readiness Level (TRL 1 to 9)"@en .
+
+# =============================================================================
+# Directed Object Properties (R)
+# =============================================================================
+
+:developedAt rdf:type owl:ObjectProperty ;
+    rdfs:domain :TechnologyPassport ;
+    rdfs:range :Organization .
+
+:authoredBy rdf:type owl:ObjectProperty ;
+    rdfs:domain :TechnologyPassport ;
+    rdfs:range :Researcher .
+
+:protectedByDocument rdf:type owl:ObjectProperty ;
+    rdfs:domain :TechnologyPassport ;
+    rdfs:range :PatentDocument .
+
+:documentedInReport rdf:type owl:ObjectProperty ;
+    rdfs:domain :TechnologyPassport ;
+    rdfs:range :RnDReport .
+
+:verifiedByProtocol rdf:type owl:ObjectProperty ;
+    rdfs:domain :TechnologyPassport ;
+    rdfs:range :TestProtocol .
+
+:hasReadinessLevel rdf:type owl:ObjectProperty ;
+    rdfs:domain :TechnologyPassport ;
+    rdfs:range :TRLLevel .
+
+:applicableInIndustry rdf:type owl:ObjectProperty ;
+    rdfs:domain :TechnologyPassport ;
+    rdfs:range :IndustryDomain .
+
+# =============================================================================
+# Typed Data Attributes (A)
+# =============================================================================
+
+:doiIdentifier rdf:type owl:DatatypeProperty ;
+    rdfs:domain :TechnologyPassport ;
+    rdfs:range xsd:string .
+
+:stateRegistrationIndex rdf:type owl:DatatypeProperty ;
+    rdfs:domain :RnDReport ;
+    rdfs:range xsd:string .
+
+:ipcCode rdf:type owl:DatatypeProperty ;
+    rdfs:domain :TechnologyPassport ;
+    rdfs:range xsd:string .
+
+:oecdFosCode rdf:type owl:DatatypeProperty ;
+    rdfs:domain :TechnologyPassport ;
+    rdfs:range xsd:string .
+
+:nonConfidentialAbstractEN rdf:type owl:DatatypeProperty ;
+    rdfs:domain :TechnologyPassport ;
+    rdfs:range xsd:string .
+
+:trlScore rdf:type owl:DatatypeProperty ;
+    rdfs:domain :TRLLevel ;
+    rdfs:range xsd:integer .
+
+:trlConfidence rdf:type owl:DatatypeProperty ;
+    rdfs:domain :TechnologyPassport ;
+    rdfs:range xsd:float .
+
+:orcidId rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Researcher ;
+    rdfs:range xsd:string .
